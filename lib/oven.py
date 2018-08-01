@@ -4,6 +4,7 @@ import random
 import datetime
 import logging
 import json
+import os.path
 
 import config
 
@@ -101,7 +102,8 @@ class Oven (threading.Thread):
         self.reset()
 
     def run(self):
-	f = open('DataLog.txt', 'a')
+	nameDir = os.path.join('/home/pi/V1.8/storage/', "DataLg.txt")
+	f = open(nameDir, 'a')
 	f.write(now.strftime("%Y-%m-%d %H:%M"))
 	f.write('\n\n')
 	f.write('\tTime(s)\tTemperature(C)\n')
