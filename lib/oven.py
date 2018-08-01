@@ -102,8 +102,7 @@ class Oven (threading.Thread):
         self.reset()
 
     def run(self):
-	nameDir = os.path.join('/home/pi/V1.8/public/assets/js', "DataLog.txt")
-	f = open(nameDir,'a')
+	f = open('DataLog.txt', 'a')
 	f.write(now.strftime("%Y-%m-%d %H:%M"))
 	f.write('\n\n')
 	f.write('\tTime(s)\tTemperature(C)\n')
