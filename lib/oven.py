@@ -103,8 +103,8 @@ class Oven (threading.Thread):
     def run(self):		
 	f = open('DataLog.txt','a')
 	f.write(now.strftime("%Y-%m-%d %H:%M"))
-	f.write('\n')
-	f.write('\tTime(s)\tTemperature(C)\n\n')
+	f.write('\n\n')
+	f.write('\tTime(s)\tTemperature(C)\n')
         temperature_count = 0
         last_temp = 0
         pid = 0
