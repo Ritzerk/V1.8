@@ -99,10 +99,10 @@ class Oven (threading.Thread):
         self.reset()
 
     def run(self):		
-		f = open('DataLog.txt','a')
-		f.write(now.strftime("%Y-%m-%d %H:%M"))
-		f.write('\n')
-		f.write('\tTime(s)\t\t\t\tTemperature(C)\n')
+	f = open('DataLog.txt','a')
+	f.write(now.strftime("%Y-%m-%d %H:%M"))
+	f.write('\n')
+	f.write('\tTime(s)\t\t\t\tTemperature(C)\n')
         temperature_count = 0
         last_temp = 0
         pid = 0
@@ -121,7 +121,7 @@ class Oven (threading.Thread):
                     self.runtime = runtime_delta.total_seconds()
                 log.info("running at %.1f deg C (Target: %.1f) , heat %.2f, air %.2f, (%.1fs/%.0f)" % (self.temp_sensor.temperature, self.target, self.heat, self.air, self.runtime, self.totaltime))	#DISABLED DOOR AND COOLING
                 f.write('\t%.1f\t\t\t\t\t\t\t%.1f\n' % (self.runtime, self.temp_sensor.temperature))
-				self.lastTarget = self.target
+		self.lastTarget = self.target
 		self.target = self.profile.get_target_temperature(self.runtime)
                 pid = self.pid.compute(self.target, self.temp_sensor.temperature)
 
@@ -170,8 +170,8 @@ class Oven (threading.Thread):
 		    time.sleep(1)
 		    self.set_buzz(False)
 		    time.sleep(1)
-			f.write('\n')
-			f.close()
+		    f.write('\n')
+		    f.close()
                     self.reset()
             
             if pid > 0:
