@@ -4,7 +4,6 @@ import random
 import datetime
 import logging
 import json
-import os.path
 
 import config
 
