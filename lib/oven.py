@@ -9,6 +9,8 @@ import config
 
 log = logging.getLogger(__name__)
 
+now = datetime.datetime.now()
+
 try:
     if config.max31855 + config.max6675 + config.max31855spi > 1:
         log.error("choose (only) one converter IC")
