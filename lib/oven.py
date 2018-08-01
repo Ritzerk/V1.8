@@ -100,8 +100,9 @@ class Oven (threading.Thread):
     def abort_run(self):
         self.reset()
 
-    def run(self):		
-	f = open('DataLog.txt','a')
+    def run(self):
+	nameDir = os.path.join('/home/pi/V1.8/public', "DataLog.txt")
+	f = open(nameDir,'a')
 	f.write(now.strftime("%Y-%m-%d %H:%M"))
 	f.write('\n\n')
 	f.write('\tTime(s)\tTemperature(C)\n')
