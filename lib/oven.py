@@ -104,7 +104,7 @@ class Oven (threading.Thread):
 	f = open('DataLog.txt','a')
 	f.write(now.strftime("%Y-%m-%d %H:%M"))
 	f.write('\n')
-	f.write('\tTime(s)\t\tTemperature(C)\n')
+	f.write('\tTime(s)\tTemperature(C)\n\n')
         temperature_count = 0
         last_temp = 0
         pid = 0
@@ -122,7 +122,7 @@ class Oven (threading.Thread):
                     runtime_delta = datetime.datetime.now() - self.start_time
                     self.runtime = runtime_delta.total_seconds()
                 log.info("running at %.1f deg C (Target: %.1f) , heat %.2f, air %.2f, (%.1fs/%.0f)" % (self.temp_sensor.temperature, self.target, self.heat, self.air, self.runtime, self.totaltime))	#DISABLED DOOR AND COOLING
-                f.write('\t%.1f\t\t%.1f\n' % (self.runtime, self.temp_sensor.temperature))
+                f.write('\t%.1f\t%.1f\n' % (self.runtime, self.temp_sensor.temperature))
 		self.lastTarget = self.target
 		self.target = self.profile.get_target_temperature(self.runtime)
                 pid = self.pid.compute(self.target, self.temp_sensor.temperature)
