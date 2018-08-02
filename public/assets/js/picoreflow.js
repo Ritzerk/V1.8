@@ -524,7 +524,6 @@ $(document).ready(function()
                         allow_dismiss: true,
                         stackup_spacing: 10 // spacing between consecutively stacked growls.
                         });
-			xcool = "NOW";
                     }
                 }
 
