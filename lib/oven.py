@@ -80,9 +80,9 @@ class Oven (threading.Thread):
         self.runtime = 0
         self.totaltime = 0
         self.target = 0
-	self.lastTarget = 0
+	#self.lastTarget = 0
 	self.door = "CLOSED"
-	self.cooling = 1
+	#self.cooling = 1
         self.state = Oven.STATE_IDLE
         self.set_heat(False)
         self.set_air(False)
@@ -123,21 +123,21 @@ class Oven (threading.Thread):
                     self.runtime = runtime_delta.total_seconds()
                 log.info("running at %.1f deg C (Target: %.1f) , heat %.2f, air %.2f, (%.1fs/%.0f)" % (self.temp_sensor.temperature, self.target, self.heat, self.air, self.runtime, self.totaltime))	#DISABLED DOOR AND COOLING
                 f.write('\t%.1f\t%.1f\n' % (self.runtime, self.temp_sensor.temperature))
-		self.lastTarget = self.target
+		#self.lastTarget = self.target
 		self.target = self.profile.get_target_temperature(self.runtime)
                 pid = self.pid.compute(self.target, self.temp_sensor.temperature)
 
                 log.info("pid: %.3f" % pid)
 				
-		if ((self.target < self.lastTarget) and (self.cooling == 1)):
-		    self.set_buzz(True)
-		    time.sleep(0.5)
-		    self.set_buzz(False)
-		    time.sleep(0.5)
-		    self.set_buzz(True)
-		    time.sleep(0.5)
-		    self.set_buzz(False)
-		    self.cooling = 0  
+		#if ((self.target < self.lastTarget) and (self.cooling == 1)):
+		#    self.set_buzz(True)
+		#    time.sleep(0.5)
+		#    self.set_buzz(False)
+		#    time.sleep(0.5)
+		#    self.set_buzz(True)
+		#    time.sleep(0.5)
+		#    self.set_buzz(False)
+		#    self.cooling = 0  
 				
 		#This is where we may ask user to open vent to cool, new function to pop window.
                 #self.set_cool(pid <= -1)	#Returns false or true, not required.
@@ -226,13 +226,13 @@ class Oven (threading.Thread):
             'runtime': self.runtime,
             'temperature': self.temp_sensor.temperature,
             'target': self.target,
-	    'lastTarget': self.lastTarget,
+	    #'lastTarget': self.lastTarget,
             'state': self.state,
             'heat': self.heat,	
             'air': self.air,
             'totaltime': self.totaltime,
 	    'door': self.door,
-	    'cooling': self.cooling
+	    #'cooling': self.cooling
         }
         return state
         
